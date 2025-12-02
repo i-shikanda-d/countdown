@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { StepLayout } from '@/components/ui/StepLayout';
 import { useCountdownStore } from '@/lib/store';
 import { isValidImageFile } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -135,9 +136,10 @@ export default function DetailsPage() {
           <div className="space-y-3">
             {imagePreview ? (
               <div className="relative">
-                <img
+                <Image
                   src={imagePreview}
                   alt="Preview"
+
                   className="w-full h-48 object-cover rounded-lg border border-slate-300"
                 />
                 <button

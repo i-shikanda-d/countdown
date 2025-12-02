@@ -5,7 +5,9 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import type { Countdown } from '@/types';
 
-interface ICountdown extends Document, Countdown {}
+// Omit `_id` from the Countdown type so Mongoose's Document `_id` (ObjectId)
+// is authoritative and we avoid a type conflict between string and ObjectId.
+interface ICountdown extends Document, Omit<Countdown, '_id'> {}
 
 const CountdownSchema = new Schema<ICountdown>(
   {
