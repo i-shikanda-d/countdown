@@ -3,14 +3,14 @@
  * Third step: Add optional description and image
  */
 
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { StepLayout } from "@/components/ui/StepLayout";
-import { useCountdownStore } from "@/lib/store";
-import { isValidImageFile } from "@/lib/utils";
-import Image from "next/image";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { StepLayout } from '@/components/ui/StepLayout';
+import { useCountdownStore } from '@/lib/store';
+import { isValidImageFile } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -26,20 +26,20 @@ export default function DetailsPage() {
     reset,
   } = useCountdownStore();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [imagePreview, setImagePreview] = useState<string>("");
+  const [error, setError] = useState('');
+  const [imagePreview, setImagePreview] = useState<string>('');
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     if (!isValidImageFile(file)) {
-      setError("Image must be JPG, PNG, WebP, or GIF under 5MB");
+      setError('Image must be JPG, PNG, WebP, or GIF under 5MB');
       return;
     }
 
     setImageFile(file);
-    setError("");
+    setError('');
 
     // Create preview
     const reader = new FileReader();
@@ -51,38 +51,38 @@ export default function DetailsPage() {
 
   const handleCreate = async () => {
     if (!label || !type || !date) {
-      setError("Missing required fields");
+      setError('Missing required fields');
       return;
     }
 
     setLoading(true);
-    setError("");
+    setError('');
 
     try {
       // Create FormData for file upload
       const formData = new FormData();
-      formData.append("label", label);
-      formData.append("type", type);
-      formData.append("date", date);
-      if (time) formData.append("time", time);
-      if (description) formData.append("description", description);
-      if (imageFile) formData.append("image", imageFile);
+      formData.append('label', label);
+      formData.append('type', type);
+      formData.append('date', date);
+      if (time) formData.append('time', time);
+      if (description) formData.append('description', description);
+      if (imageFile) formData.append('image', imageFile);
 
-      const response = await fetch("/api/create", {
-        method: "POST",
+      const response = await fetch('/api/create', {
+        method: 'POST',
         body: formData,
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || "Failed to create countdown");
+        throw new Error(data.error || 'Failed to create countdown');
       }
 
       const data = await response.json();
       reset();
       router.push(`/c/${data._id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(err instanceof Error ? err.message : 'Something went wrong');
       setLoading(false);
     }
   };
@@ -100,11 +100,11 @@ export default function DetailsPage() {
           <p className="text-sm text-slate-600">📊 Countdown Summary</p>
           <p className="text-lg font-semibold text-slate-900">{label}</p>
           <p className="text-sm text-slate-600 mt-1">
-            {new Date(date).toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            {new Date(date).toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
             })}
             {time && ` at ${time}`}
           </p>
@@ -129,7 +129,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Image upload */}
-        <div>
+        <div hidden>
           <label className="block text-sm font-semibold text-slate-700 mb-2">
             🖼️ Image (optional)
           </label>
@@ -140,13 +140,14 @@ export default function DetailsPage() {
                   src={imagePreview}
                   alt="Preview"
                   height={1200}
-                  width={1200}
+                  width={12}
+
                   className="w-full h-48 object-cover rounded-lg border border-slate-300"
                 />
                 <button
                   onClick={() => {
                     setImageFile(null);
-                    setImagePreview("");
+                    setImagePreview('');
                   }}
                   className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-semibold"
                 >
@@ -163,9 +164,7 @@ export default function DetailsPage() {
                   id="image-input"
                 />
                 <label htmlFor="image-input" className="cursor-pointer block">
-                  <p className="text-slate-700 font-semibold">
-                    Click to upload
-                  </p>
+                  <p className="text-slate-700 font-semibold">Click to upload</p>
                   <p className="text-xs text-slate-600 mt-1">
                     JPG, PNG, WebP, GIF up to 5MB
                   </p>
@@ -183,7 +182,7 @@ export default function DetailsPage() {
         disabled={loading}
         className="w-full mt-8 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-lg transition-colors"
       >
-        {loading ? "⏳ Creating..." : "✨ Create Countdown"}
+        {loading ? '⏳ Creating...' : '✨ Create Countdown'}
       </button>
     </StepLayout>
   );
