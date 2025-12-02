@@ -8,10 +8,7 @@ import { connectDB } from '@/lib/mongodb';
 import { CountdownModel } from '@/lib/models/Countdown';
 import type { CountdownResponse } from '@/types';
 
-export async function GET(
-  request: NextRequest,
-  context: { params?: { id?: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
     try {
       await connectDB();
@@ -23,14 +20,16 @@ export async function GET(
       );
     }
 
-    const { params } = context || {};
-    const id = params?.id;
+    // Extract id from the request URL to avoid relying on framework-injected
+    // `context` typing which can vary between Next.js versions and cause
+    // TypeScript incompatibilities in route handler signatures.
+    const url = new URL(request.url);
+    const segments = url.pathname.split('/').filter(Boolean);
+    // Expecting path like /api/countdown/<id>
+    const id = segments.length ? segments[segments.length - 1] : undefined;
 
     if (!id) {
-      return NextResponse.json(
-        { data: null, error: 'Missing id parameter' },
-        { status: 400 }
-      );
+      return NextResponse.json({ data: null, error: 'Missing id parameter' }, { status: 400 });
     }
 
     // Fetch countdown from database
