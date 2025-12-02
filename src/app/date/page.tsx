@@ -58,7 +58,7 @@ export default function DatePage() {
               setDate(e.target.value);
               setError('');
             }}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
@@ -71,7 +71,7 @@ export default function DatePage() {
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <p className="text-xs text-slate-600 mt-1">
             Leave blank to count down to midnight
