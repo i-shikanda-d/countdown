@@ -10,7 +10,7 @@ import type { CountdownResponse } from '@/types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params?: { id?: string } }
 ) {
   try {
     try {
@@ -23,7 +23,15 @@ export async function GET(
       );
     }
 
-    const { id } = params;
+    const { params } = context || {};
+    const id = params?.id;
+
+    if (!id) {
+      return NextResponse.json(
+        { data: null, error: 'Missing id parameter' },
+        { status: 400 }
+      );
+    }
 
     // Fetch countdown from database
     const countdown = await CountdownModel.findById(id).lean();
