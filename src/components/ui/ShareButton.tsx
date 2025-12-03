@@ -1,8 +1,3 @@
-/**
- * ShareButton component
- * Share countdown using Web Share API or copy to clipboard
- */
-
 'use client';
 
 import { useState } from 'react';

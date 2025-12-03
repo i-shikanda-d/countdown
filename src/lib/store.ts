@@ -4,11 +4,14 @@
  */
 
 import { create } from 'zustand';
-import type { FormState, CountdownType } from '@/types';
+import type { FormState } from '@/types';
+
+// Re-export CountdownType so it can be imported from this file
+export type { CountdownType } from '@/types';
 
 interface CountdownStore extends FormState {
   setLabel: (label: string) => void;
-  setType: (type: CountdownType) => void;
+  setType: (type: FormState['type']) => void;
   setDate: (date: string) => void;
   setTime: (time: string) => void;
   setDescription: (description: string) => void;

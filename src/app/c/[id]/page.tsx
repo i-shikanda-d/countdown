@@ -1,6 +1,6 @@
 /**
  * /c/[id] page
- * Shareable countdown page
+ * Shareable countdown page - Improved UI/UX
  */
 
 'use client';
@@ -41,22 +41,29 @@ export default function CountdownPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
-        <p className="text-slate-600 text-lg">Loading countdown...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center px-4">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-700 text-lg font-medium">Loading countdown...</p>
+        </div>
       </div>
     );
   }
 
   if (error || !countdown) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-md p-8 max-w-md text-center">
-          <p className="text-red-600 font-semibold mb-4">❌ {error}</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 max-w-md w-full text-center">
+          <div className="text-6xl mb-4">😕</div>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+            Countdown Not Found
+          </h2>
+          <p className="text-slate-600 mb-6">{error}</p>
           <Link
             href="/start"
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
           >
-            Create a new countdown
+            Create New Countdown
           </Link>
         </div>
       </div>
@@ -71,64 +78,76 @@ export default function CountdownPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-slate-200">
-        <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-slate-200 sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <Link
             href="/start"
-            className="text-blue-600 hover:text-blue-700 font-medium text-sm mb-4 inline-block"
+            className="text-blue-600 hover:text-blue-700 font-medium text-sm sm:text-base mb-3 sm:mb-4 inline-flex items-center gap-2 transition-colors"
           >
-            ← Create new countdown
+            <span>←</span>
+            <span className="hidden sm:inline">Create new countdown</span>
+            <span className="sm:hidden">New countdown</span>
           </Link>
-          <h1 className="text-4xl font-bold text-slate-900">{countdown.label}</h1>
-          <p className="text-slate-600 mt-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 break-words">
+            {countdown.label}
+          </h1>
+          <p className="text-slate-600 mt-2 text-sm sm:text-base">
             {formattedDate}
-            {countdown.time && ` at ${countdown.time}`}
+            {countdown.time && (
+              <>
+                <span className="hidden sm:inline"> at </span>
+                <span className="sm:hidden"> • </span>
+                {countdown.time}
+              </>
+            )}
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         {/* Image */}
         {countdown.imageUrl && (
-          <div className="mb-8 rounded-lg overflow-hidden shadow-md relative w-full h-96">
+          <div className="mb-6 sm:mb-8 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg relative w-full h-48 sm:h-64 md:h-80 lg:h-96">
             <Image
               src={countdown.imageUrl}
               alt={countdown.label}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
               priority
             />
           </div>
         )}
 
         {/* Timer */}
-        <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
           <CountdownTimer targetDate={countdown.date} time={countdown.time} />
         </div>
 
         {/* Description */}
         {countdown.description && (
-          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">About</h2>
-            <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-semibold text-slate-900 mb-3 sm:mb-4">
+              About This Event
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
               {countdown.description}
             </p>
           </div>
         )}
 
         {/* Share button */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <ShareButton countdownId={id} label={countdown.label} />
         </div>
 
         {/* Footer */}
-        <div className="text-center py-8 border-t border-slate-200">
-          <p className="text-slate-600 text-sm">
-            A <span className="font-semibold">Filmoja</span> product
+        <div className="text-center py-6 sm:py-8 border-t border-slate-200">
+          <p className="text-slate-600 text-xs sm:text-sm">
+            Made with ❤️ by <span className="font-semibold text-slate-900">Filmoja</span>
           </p>
         </div>
       </div>

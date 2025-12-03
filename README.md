@@ -1,8 +1,8 @@
-# ⏱️ Timely - Countdown Creation App
+# Timely - Countdown Creation App
 
 A modern, minimal web app for creating and sharing beautiful countdowns to your special moments.
 
-## 🎯 Features
+## Features
 
 - **Multi-step form** for easy countdown creation
 - **Local image uploads** stored in `public/uploads`
@@ -12,7 +12,7 @@ A modern, minimal web app for creating and sharing beautiful countdowns to your 
 - **Responsive design** with TailwindCSS
 - **TypeScript** throughout for type safety
 
-## 📦 Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
 - **Database**: MongoDB + Mongoose
@@ -21,7 +21,7 @@ A modern, minimal web app for creating and sharing beautiful countdowns to your 
 - **Language**: TypeScript
 - **Image Storage**: Local filesystem (`public/uploads`)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 
@@ -63,85 +63,7 @@ The app will be available at `http://localhost:3000`
 6. Create the countdown
 7. Share via Web Share API or copy link
 
-## 📁 Folder Structure
-
-```
-src/
-├── app/
-│   ├── api/
-│   │   ├── create/route.ts          # POST endpoint for creating countdowns
-│   │   └── countdown/[id]/route.ts  # GET endpoint for fetching countdowns
-│   ├── c/[id]/                      # Shareable countdown page
-│   ├── start/                       # Step 1: Select type
-│   ├── date/                        # Step 2: Pick date/time
-│   ├── details/                     # Step 3: Add description & image
-│   ├── layout.tsx                   # Root layout
-│   ├── globals.css                  # Global styles
-│   └── page.tsx                     # Home/landing page
-├── components/
-│   └── ui/
-│       ├── StepLayout.tsx           # Multi-step form wrapper
-│       ├── CountdownTimer.tsx       # Live countdown display
-│       └── ShareButton.tsx          # Share/copy button
-├── lib/
-│   ├── mongodb.ts                   # MongoDB connection helper
-│   ├── models/
-│   │   └── Countdown.ts             # Mongoose schema & model
-│   ├── store.ts                     # Zustand state management
-│   └── utils.ts                     # Utility functions
-├── types/
-│   └── index.ts                     # TypeScript type definitions
-└── public/
-    └── uploads/                     # Local image storage
-```
-
-## 🔧 API Routes
-
-### `POST /api/create`
-
-Create a new countdown with optional image upload.
-
-**Request** (FormData):
-```javascript
-{
-  label: string,           // "Mom's Birthday"
-  type: CountdownType,     // "Birthday" | "Anniversary" | "Event" | "Holiday" | "Launch" | "Custom"
-  date: string,            // "2025-12-25"
-  time?: string,           // "18:30" (optional)
-  description?: string,    // Optional long text
-  image?: File             // Optional image file (JPG, PNG, WebP, GIF, max 5MB)
-}
-```
-
-**Response**:
-```json
-{
-  "_id": "67a1b2c3d4e5f6g7h8i9j0k1",
-  "message": "Countdown created successfully"
-}
-```
-
-### `GET /api/countdown/[id]`
-
-Fetch a countdown by ID.
-
-**Response**:
-```json
-{
-  "data": {
-    "_id": "67a1b2c3d4e5f6g7h8i9j0k1",
-    "label": "Mom's Birthday",
-    "type": "Birthday",
-    "date": "2025-12-25",
-    "time": "18:30",
-    "description": "Celebrating Mom!",
-    "imageUrl": "/uploads/1702641234567-abc123.jpg",
-    "createdAt": "2024-12-03T10:30:00.000Z"
-  }
-}
-```
-
-## 📤 Image Upload
+## Image Upload
 
 Images are uploaded as multipart FormData and saved to `public/uploads/` with unique filenames:
 
@@ -152,7 +74,7 @@ Images are uploaded as multipart FormData and saved to `public/uploads/` with un
 
 The relative path is stored in MongoDB and served directly from the public folder.
 
-## 🛠️ Environment Variables
+## Environment Variables
 
 Create a `.env.local` file in the root directory:
 
@@ -161,7 +83,7 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/timely?retryWrit
 NODE_ENV=development
 ```
 
-## 🏗️ Building for Production
+## Building for Production
 
 ```bash
 # Build the app
@@ -171,7 +93,7 @@ npm run build
 npm start
 ```
 
-## 📋 Important Notes
+## Important Notes
 
 ### Vercel Deployment
 
@@ -195,7 +117,7 @@ The current setup works perfectly on:
 - Traditional hosting (AWS EC2, DigitalOcean, Heroku, etc.)
 - Any platform with persistent filesystem access
 
-## 🎨 Customization
+## Customization
 
 ### Change Colors
 
@@ -211,7 +133,7 @@ Edit TailwindCSS classes in components. Default colors use `blue-*` and `slate-*
 
 Edit `src/types/index.ts` and `src/lib/models/Countdown.ts` to add more preset types.
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 **MongoDB Connection Error**
 - Verify `MONGODB_URI` is correct in `.env.local`
@@ -228,7 +150,7 @@ Edit `src/types/index.ts` and `src/lib/models/Countdown.ts` to add more preset t
 - Check MongoDB database for the document
 - Ensure the app is connected to MongoDB
 
-## 📝 License
+## License
 
 MIT - Feel free to use and modify as needed.
 
