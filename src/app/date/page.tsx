@@ -21,11 +21,21 @@ export default function DatePage() {
       return;
     }
 
-    // Validate that the selected date is in the future
-    const selectedDate = new Date(date);
+    // Build the full datetime by combining date and time
+    let selectedDateTime = new Date(date);
+    if (time) {
+      const [hours, minutes] = time.split(':');
+      selectedDateTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
+    } else {
+      // If no time specified, default to midnight
+      selectedDateTime.setHours(0, 0, 0);
+    }
+
     const now = new Date();
-    if (selectedDate <= now) {
-      setError('Please select a future date');
+
+    // Allow today with a future time, or any future date
+    if (selectedDateTime <= now) {
+      setError('Please select a future date and time');
       return;
     }
 
@@ -74,7 +84,7 @@ export default function DatePage() {
             className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <p className="text-xs text-slate-600 mt-1">
-            Leave blank to count down to midnight
+            Leave blank to count down to midnight (today or selected date)
           </p>
         </div>
 

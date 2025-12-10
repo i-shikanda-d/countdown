@@ -11,14 +11,14 @@ export function ShareButton({ countdownId, label }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/c/${countdownId}`;
-  const shareMessage = `🎉 Join me in counting down to:\n*${label}*\n\n${shareUrl}`;
+  const shareMessage = `Join me in counting down to:\n*${label}*\n \n${shareUrl}`;
 
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
           title: `Countdown: ${label}`,
-          text: `🎉 Join me in counting down to:\n*${label}*`,
+          text: `Join me in counting down to \n*${label}* \n`,
           url: shareUrl,
         });
       } catch (error) {
