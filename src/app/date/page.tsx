@@ -22,7 +22,7 @@ export default function DatePage() {
     }
 
     // Build the full datetime by combining date and time
-    let selectedDateTime = new Date(date);
+    const selectedDateTime = new Date(date);
     if (time) {
       const [hours, minutes] = time.split(':');
       selectedDateTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
