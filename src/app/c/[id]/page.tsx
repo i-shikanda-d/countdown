@@ -78,22 +78,22 @@ export default function CountdownPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-800">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-slate-200 sticky top-0 z-10">
+      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-slate-200 dark:bg-slate-900/80 dark:border-slate-700 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <Link
             href="/start"
-            className="text-blue-600 hover:text-blue-700 font-medium text-sm sm:text-base mb-3 sm:mb-4 inline-flex items-center gap-2 transition-colors"
+            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm sm:text-base mb-3 sm:mb-4 inline-flex items-center gap-2 transition-colors"
           >
             <span>←</span>
             <span className="hidden sm:inline">Create new countdown</span>
             <span className="sm:hidden">New countdown</span>
           </Link>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 break-words">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 break-words">
             {countdown.label}
           </h1>
-          <p className="text-slate-600 mt-2 text-sm sm:text-base">
+          <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm sm:text-base">
             {formattedDate}
             {countdown.time && (
               <>
@@ -123,17 +123,17 @@ export default function CountdownPage() {
         )}
 
         {/* Timer */}
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
+        <div className="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-none p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
           <CountdownTimer targetDate={countdown.date} time={countdown.time} />
         </div>
 
         {/* Description */}
         {countdown.description && (
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 mb-6 sm:mb-8">
-            <h2 className="text-lg sm:text-xl font-semibold text-slate-900 mb-3 sm:mb-4">
+          <div className="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-none p-6 sm:p-8 mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3 sm:mb-4">
               About This Event
             </h2>
-            <p className="text-slate-700 text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
+            <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
               {countdown.description}
             </p>
           </div>

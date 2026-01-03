@@ -45,14 +45,17 @@ export function CountdownTimer({ targetDate, time }: CountdownTimerProps) {
 
   if (timeRemaining.isOver) {
     return (
-      <div className="text-center py-8">
+      <div className="text-center py-8" role="status" aria-live="polite" aria-atomic="true">
         <p className="text-3xl font-bold text-slate-900">The countdown is over!</p>
       </div>
     );
   }
 
+  const statusText = `${timeRemaining.days} days ${timeRemaining.hours} hours ${timeRemaining.minutes} minutes ${timeRemaining.seconds} seconds remaining`;
+
   return (
-    <div className="grid grid-cols-4 gap-4 py-8">
+    <div role="timer" aria-live="polite" aria-atomic="true" className="grid grid-cols-4 gap-4 py-8">
+      <p className="sr-only" aria-live="polite">{statusText}</p>
       {[
         { value: timeRemaining.days, label: 'Days' },
         { value: timeRemaining.hours, label: 'Hours' },
@@ -61,12 +64,12 @@ export function CountdownTimer({ targetDate, time }: CountdownTimerProps) {
       ].map((item) => (
         <div
           key={item.label}
-          className="bg-blue-50 rounded-lg p-4 text-center border border-blue-200"
+          className="bg-blue-50 dark:bg-slate-800 rounded-lg p-4 text-center border border-blue-200 dark:border-slate-700"
         >
-          <div className="text-3xl font-bold text-blue-600">
+          <div className="text-3xl font-bold text-blue-600 dark:text-blue-300">
             {String(item.value).padStart(2, '0')}
           </div>
-          <div className="text-xs text-slate-600 mt-1 uppercase tracking-wider">
+          <div className="text-xs text-slate-600 dark:text-slate-300 mt-1 uppercase tracking-wider">
             {item.label}
           </div>
         </div>

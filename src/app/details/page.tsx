@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { StepLayout } from "@/components/ui/StepLayout";
 import { useCountdownStore } from "@/lib/store";
 import { isValidImageFile } from "@/lib/utils";
-import Image from "next/image";
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -96,10 +95,10 @@ export default function DetailsPage() {
     >
       <div className="space-y-6">
         {/* Summary */}
-        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-          <p className="text-sm text-slate-600">📊 Countdown Summary</p>
-          <p className="text-lg font-semibold text-slate-900">{label}</p>
-          <p className="text-sm text-slate-600 mt-1">
+        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 dark:bg-slate-900 dark:border-slate-700">
+          <p className="text-sm text-slate-600 dark:text-slate-300">📊 Countdown Summary</p>
+          <p className="text-lg font-semibold text-slate-900 dark:text-slate-50">{label}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
             {new Date(date).toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
@@ -129,18 +128,16 @@ export default function DetailsPage() {
         </div>
 
         {/* Image upload */}
-        <div hidden>
+        <div>
           <label className="block text-sm font-semibold text-slate-700 mb-2">
             🖼️ Image (optional)
           </label>
           <div className="space-y-3">
             {imagePreview ? (
               <div className="relative">
-                <Image
+                <img
                   src={imagePreview}
-                  alt="Preview"
-                  height={1200}
-                  width={12}
+                  alt={`${label} preview`}
                   className="w-full h-48 object-cover rounded-lg border border-slate-300"
                 />
                 <button
@@ -159,8 +156,9 @@ export default function DetailsPage() {
                   type="file"
                   accept="image/*"
                   onChange={handleImageSelect}
-                  className="hidden"
+                  className="sr-only"
                   id="image-input"
+                  aria-label="Upload an image for the countdown"
                 />
                 <label htmlFor="image-input" className="cursor-pointer block">
                   <p className="text-slate-700 font-semibold">

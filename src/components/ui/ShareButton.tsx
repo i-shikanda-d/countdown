@@ -39,11 +39,25 @@ export function ShareButton({ countdownId, label }: ShareButtonProps) {
   };
 
   return (
-    <button
-      onClick={handleShare}
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-    >
-      {copied ? '✓ Message & Link Copied!' : '📤 Share Countdown'}
-    </button>
+    <>
+      <button
+        onClick={handleShare}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400"
+        aria-label={`Share countdown: ${label}`}
+        title={`Share countdown: ${label}`}
+      >
+        {copied ? '✓ Copied!' : '📤 Share Countdown'}
+      </button>
+
+      {/* Status for assistive tech */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {copied ? 'Message and link copied to clipboard' : ''}
+      </div>
+
+      {/* Visible confirmation for sighted users */}
+      {copied && (
+        <p className="mt-2 text-sm font-medium text-green-600 dark:text-green-400">Message and link copied to clipboard</p>
+      )}
+    </>
   );
 }

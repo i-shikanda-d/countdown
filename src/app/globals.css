@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --transition-duration: 160ms;
+}
+
+body {
+  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+/**
+ * Improve default form focus styles in dark mode
+ */
+:root,
+.dark {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

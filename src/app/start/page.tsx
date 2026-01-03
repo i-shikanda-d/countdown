@@ -61,19 +61,30 @@ export default function StartPage() {
     <StepLayout step={1} totalSteps={3} title="What are we counting down?">
       <div className="space-y-4">
         {/* Presets */}
-        {PRESET_TYPES.map((preset) => (
-          <button
-            key={preset}
-            onClick={() => handlePresetClick(preset)}
-            className={`w-full p-4 rounded-lg border-2 text-left font-semibold transition-all duration-200 ${
-              selectedType === preset
-                ? 'border-blue-600 bg-blue-50 text-blue-900'
-                : 'border-slate-200 text-slate-700 hover:border-slate-300'
-            }`}
-          >
-            {preset}
-          </button>
-        ))}
+        <fieldset className="space-y-2" aria-label="Preset countdown types">
+          {PRESET_TYPES.map((preset) => (
+            <label
+              key={preset}
+              className={`w-full p-4 rounded-lg border-2 flex items-center gap-3 cursor-pointer transition-all duration-200 ${
+                selectedType === preset
+                  ? 'border-blue-600 bg-blue-50 text-blue-900 dark:bg-blue-900 dark:text-blue-200'
+                  : 'border-slate-200 text-slate-700 hover:border-slate-300 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600'
+              }`}
+            >
+              <input
+                type="radio"
+                name="preset"
+                value={preset}
+                checked={selectedType === preset}
+                onChange={() => handlePresetClick(preset)}
+                className="sr-only"
+                aria-checked={selectedType === preset}
+              />
+              <span className="flex-1">{preset}</span>
+              <span className="text-sm text-slate-500">{selectedType === preset ? 'Selected' : ''}</span>
+            </label>
+          ))}
+        </fieldset>
 
         {/* Custom UI */}
         {isEditingCustom ? (
