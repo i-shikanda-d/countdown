@@ -4,9 +4,29 @@
 
 :root {
   --transition-duration: 160ms;
+
+  /* Light theme tokens */
+  --bg: #ffffff; /* page background */
+  --surface: #ffffff; /* cards / panels */
+  --text: #0f172a; /* main text */
+  --muted: #64748b; /* secondary text / borders */
+  --accent: #2563eb; /* primary accent */
+  --success: #16a34a;
+}
+
+/* Soft "dark shade of white" theme: very light / off-white appearance */
+.dark {
+  --bg: #e8eaee; /* slightly off-white */
+  --surface: #ffffff; /* keep panels crisp */
+  --text: #0f172a; /* keep readable dark text */
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --success: #16a34a;
 }
 
 body {
+  background-color: var(--bg);
+  color: var(--text);
   transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
 }
 

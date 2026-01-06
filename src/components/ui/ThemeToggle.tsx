@@ -51,7 +51,7 @@ export function ThemeToggle() {
       aria-pressed={!!isDark}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 transition-all"
+      className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-[color:var(--muted)] bg-[color:var(--surface)] text-[color:var(--text)] hover:opacity-95 transition-all"
     >
       {isDark ? (
         // Sun icon

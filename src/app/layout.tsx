@@ -128,7 +128,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[color:var(--bg)] text-[color:var(--text)]`}
       >
         {/* Top bar */}
         <header className="sticky top-0 z-20 bg-transparent">

@@ -51,10 +51,10 @@ export default function DatePage() {
     >
       <div className="space-y-6">
         {/* Display selected label */}
-        <div className="p-3 bg-blue-50 rounded-lg border border-blue-200 dark:bg-slate-800 dark:border-slate-700">
-          <p className="text-sm text-slate-600 dark:text-slate-300">Counting down to:</p>
-          <p className="text-lg font-semibold text-blue-900 dark:text-blue-200">{label}</p>
-        </div>
+        <div className="p-3 bg-blue-50 dark:bg-[color:var(--surface)] rounded-lg border border-blue-200 dark:border-[color:var(--muted)]">
+          <p className="text-sm text-[color:var(--muted)]">Counting down to:</p>
+          <p className="text-lg font-semibold text-blue-900 dark:text-[color:var(--accent)]">{label}</p>
+        </div> 
 
         {/* Date picker */}
         <div>

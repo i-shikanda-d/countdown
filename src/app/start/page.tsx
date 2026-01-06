@@ -67,8 +67,8 @@ export default function StartPage() {
               key={preset}
               className={`w-full p-4 rounded-lg border-2 flex items-center gap-3 cursor-pointer transition-all duration-200 ${
                 selectedType === preset
-                  ? 'border-blue-600 bg-blue-50 text-blue-900 dark:bg-blue-900 dark:text-blue-200'
-                  : 'border-slate-200 text-slate-700 hover:border-slate-300 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600'
+                  ? 'border-blue-600 bg-blue-50 text-blue-900 dark:bg-[color:var(--surface)] dark:text-[color:var(--accent)]'
+                  : 'border-slate-200 text-slate-700 hover:border-slate-300 dark:border-[color:var(--muted)] dark:text-[color:var(--muted)] dark:hover:border-[color:var(--muted)]'
               }`}
             >
               <input

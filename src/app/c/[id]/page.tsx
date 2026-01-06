@@ -41,10 +41,10 @@ export default function CountdownPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[color:var(--bg)] flex items-center justify-center px-4">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mb-4"></div>
-          <p className="text-slate-700 text-lg font-medium">Loading countdown...</p>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[color:var(--accent)] border-t-transparent mb-4"></div>
+          <p className="text-[color:var(--muted)] text-lg font-medium">Loading countdown...</p>
         </div>
       </div>
     );
@@ -52,16 +52,16 @@ export default function CountdownPage() {
 
   if (error || !countdown) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 max-w-md w-full text-center">
+      <div className="min-h-screen bg-[color:var(--bg)] flex items-center justify-center p-4">
+        <div className="bg-[color:var(--surface)] rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 max-w-md w-full text-center">
           <div className="text-6xl mb-4">😕</div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-[color:var(--text)] mb-2">
             Countdown Not Found
           </h2>
-          <p className="text-slate-600 mb-6">{error}</p>
+          <p className="text-[color:var(--muted)] mb-6">{error}</p>
           <Link
             href="/start"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            className="inline-block bg-[color:var(--accent)] hover:opacity-95 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
           >
             Create New Countdown
           </Link>
@@ -78,22 +78,22 @@ export default function CountdownPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-800">
+    <div className="min-h-screen bg-[color:var(--bg)]">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-slate-200 dark:bg-slate-900/80 dark:border-slate-700 sticky top-0 z-10">
+      <div className="bg-[color:var(--surface)]/80 backdrop-blur-sm shadow-sm border-b border-[color:var(--muted)] sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <Link
             href="/start"
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm sm:text-base mb-3 sm:mb-4 inline-flex items-center gap-2 transition-colors"
+            className="text-[color:var(--accent)] hover:opacity-90 font-medium text-sm sm:text-base mb-3 sm:mb-4 inline-flex items-center gap-2 transition-colors"
           >
             <span>←</span>
             <span className="hidden sm:inline">Create new countdown</span>
             <span className="sm:hidden">New countdown</span>
           </Link>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 break-words">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[color:var(--text)] break-words">
             {countdown.label}
           </h1>
-          <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm sm:text-base">
+          <p className="text-[color:var(--muted)] mt-2 text-sm sm:text-base">
             {formattedDate}
             {countdown.time && (
               <>
@@ -123,17 +123,17 @@ export default function CountdownPage() {
         )}
 
         {/* Timer */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-none p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
+        <div className="bg-[color:var(--surface)] rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
           <CountdownTimer targetDate={countdown.date} time={countdown.time} />
-        </div>
+        </div> 
 
         {/* Description */}
         {countdown.description && (
-          <div className="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-none p-6 sm:p-8 mb-6 sm:mb-8">
-            <h2 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3 sm:mb-4">
+          <div className="bg-[color:var(--surface)] rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-semibold text-[color:var(--text)] mb-3 sm:mb-4">
               About This Event
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
+            <p className="text-[color:var(--muted)] text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
               {countdown.description}
             </p>
           </div>
@@ -145,9 +145,9 @@ export default function CountdownPage() {
         </div>
 
         {/* Footer */}
-        <div className="text-center py-6 sm:py-8 border-t border-slate-200">
-          <p className="text-slate-600 text-xs sm:text-sm">
-            Made with ❤️ by <span className="font-semibold text-slate-900">Filmoja</span>
+        <div className="text-center py-6 sm:py-8 border-t border-[color:var(--muted)]">
+          <p className="text-[color:var(--muted)] text-xs sm:text-sm">
+            Made with ❤️ by <span className="font-semibold text-[color:var(--text)]">Filmoja</span>
           </p>
         </div>
       </div>

@@ -95,10 +95,14 @@ export default function DetailsPage() {
     >
       <div className="space-y-6">
         {/* Summary */}
-        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 dark:bg-slate-900 dark:border-slate-700">
-          <p className="text-sm text-slate-600 dark:text-slate-300">📊 Countdown Summary</p>
-          <p className="text-lg font-semibold text-slate-900 dark:text-slate-50">{label}</p>
-          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+        <div className="p-4 bg-[color:var(--surface)] rounded-lg border border-[color:var(--muted)]">
+          <p className="text-sm text-[color:var(--muted)]">
+            📊 Countdown Summary
+          </p>
+          <p className="text-lg font-semibold text-[color:var(--text)]">
+            {label}
+          </p>
+          <p className="text-sm text-[color:var(--muted)] mt-1">
             {new Date(date).toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
@@ -126,8 +130,7 @@ export default function DetailsPage() {
             {description.length}/1000 characters
           </p>
         </div>
-
-        {/* Image upload */}
+        {/*
         <div>
           <label className="block text-sm font-semibold text-slate-700 mb-2">
             🖼️ Image (optional)
@@ -172,6 +175,7 @@ export default function DetailsPage() {
             )}
           </div>
         </div>
+        */}
 
         {error && <p className="text-red-600 text-sm font-semibold">{error}</p>}
       </div>
